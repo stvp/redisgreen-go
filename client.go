@@ -19,7 +19,8 @@ var (
 	UserAgent = fmt.Sprintf("redisgreen-go/0.0.1 (%s; %s)", runtime.GOOS, runtime.GOARCH)
 )
 
-// A Client is a RedisGreen API client that acts as a single user.
+// A Client is a RedisGreen API client that acts as the user with the given API
+// token.
 type Client struct {
 	Token string
 }

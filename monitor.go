@@ -4,12 +4,17 @@ import (
 	"fmt"
 )
 
+// A Monitor is a RedisMonitor, which monitors a single non-RedisGreen Redis
+// instance. Creating a RedisMonitor for a RedisGreen server is redundant - all
+// RedisGreen servers include RedisMonitor by default.
 type Monitor struct {
 	// RedisMonitor id
 	Id string `json:"id"`
-	// User-visible name
+
+	// User-visible name of the RedisMonitor
 	Name string `json:"name"`
-	// Full Redis URL to be monitored
+
+	// Full Redis URL to be monitored by this RedisMonitor
 	Url string `json:"url"`
 }
 
