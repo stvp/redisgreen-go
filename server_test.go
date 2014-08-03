@@ -1,22 +1,9 @@
 package redisgreen
 
 import (
-	"os"
 	"strings"
 	"testing"
 )
-
-var (
-	ValidTokenClient   = Client{os.Getenv("TOKEN")}
-	InvalidTokenClient = Client{"invalid"}
-)
-
-func init() {
-	if len(ValidTokenClient.Token) == 0 {
-		panic("TOKEN environment variable missing")
-	}
-	ApiUrl = "http://localhost:4100"
-}
 
 func TestListServers(t *testing.T) {
 	// Valid token
@@ -51,7 +38,7 @@ func TestCreateServer(t *testing.T) {
 	// Invalid plan
 	server, err = ValidTokenClient.CreateServer("test2", "oh no!", "us-east-1", 0)
 	if err == nil {
-		t.Error("Expected error, got none")
+		t.Fatal("Expected error, got none")
 	}
 	if !strings.Contains(err.Error(), `"oh no!" is not a valid plan`) {
 		t.Errorf("Unknown error returned: %#v", err)
